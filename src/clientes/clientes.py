@@ -1,4 +1,6 @@
 from datetime import datetime
+
+from flask.scaffold import F
 from . import main
 from flask import Response,request
 from flask.json import jsonify
@@ -30,6 +32,21 @@ def salvar():
     db.session.add(ds)
     db.session.commit()
     return json.dumps(dados),201
+
+@main.route("/<id>",methods=['PUT'])
+def alterar(id):
+    dados = Clientes.query.get(int(id))
+    body = request.json
+    if body:
+        dados.nome=body.get('nome')
+        dados.telefone=body.get('telefone')
+        dados.email=body.get('email')
+        dados.cep=body.get('cep')
+        db.session.add(dados)
+        db.session.commit()
+        return dados.to_json(),201
+    else:
+        return jsonify({'msg':False}),404
 
 @main.route("/<id>",methods=['DELETE'])
 def deletar(id):
