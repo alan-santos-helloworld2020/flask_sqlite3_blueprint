@@ -5,6 +5,8 @@ import json
 
 app = Flask(__name__)
 
+
+app.config['SECRET_KEY'] = '123456789'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS']=True
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///banco.sqlite"
 db = SQLAlchemy(app)
@@ -29,6 +31,9 @@ class Clientes(db.Model):
 
 from src.clientes import main
 app.register_blueprint(main)
+
+from src.user import main_user
+app.register_blueprint(main_user)
 
 
 

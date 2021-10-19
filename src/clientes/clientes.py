@@ -1,5 +1,4 @@
 from datetime import datetime
-
 from flask.scaffold import F
 from . import main
 from flask import Response,request
