@@ -54,7 +54,7 @@ def deletar(id):
         db.session.delete(dados)
         db.session.commit()
         return jsonify({'msg':True}),201
-
-    return jsonify({'msg':False}),404
+    else:
+        return jsonify({'msg':False}),404
 
 

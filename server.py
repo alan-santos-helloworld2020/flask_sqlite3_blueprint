@@ -1,9 +1,10 @@
 from flask import Flask,Response,request
 from flask.json import jsonify
 from flask_sqlalchemy import SQLAlchemy
-import json
+from flask_cors import CORS
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 
 
 app.config['SECRET_KEY'] = '123456789'
@@ -38,4 +39,4 @@ app.register_blueprint(main_user)
 
 
 if __name__ == "__main__":
-    app.run(debug=True,port=3000)
+    app.run(debug=True,port=5000)
